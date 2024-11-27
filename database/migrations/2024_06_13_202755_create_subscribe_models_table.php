@@ -15,11 +15,16 @@ return new class extends Migration
     {
         Schema::create('subscribe_models', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('name', 50);
-            $table->string('phone', 11);
-            $table->string('emergency_phone', 11);
+            $table->string('name', 255);
+            $table->string('phone', 15);
+            $table->string('emergency_phone', 15);
             $table->string('date_birth', 8);
+            $table->string('email', 150);
+            $table->string('uf', 2);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -30,6 +35,10 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('subscribe_models', function (Blueprint $table) {
+            $table->dropForeign('subscribe_models_user_id_foreign');
+            $table->dropColumn('user_id');
+        });
         Schema::dropIfExists('subscribe_models');
     }
 };

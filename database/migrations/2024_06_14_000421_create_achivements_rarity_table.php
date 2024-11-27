@@ -19,10 +19,9 @@ return new class extends Migration
             $table->integer('bonus_points');
             $table->string('name');
             $table->string('year');
-            $table->timestamps();
-
             $table->foreign('achivement_id')->references('id')->on('achivements');
             $table->unique('achivement_id');
+            $table->timestamps();
         });
     }
 

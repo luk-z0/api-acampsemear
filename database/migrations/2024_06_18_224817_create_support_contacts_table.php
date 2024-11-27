@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('support_contacts', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('name', 50);
-            $table->string('phone', 11);
+            $table->string('phone', 15);
             $table->string('email', 150);
             $table->integer('motivation');
             $table->text('description');
+            $table->timestamps();
         });
     }
 

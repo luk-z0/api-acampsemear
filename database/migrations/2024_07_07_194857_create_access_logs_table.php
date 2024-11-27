@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_achivements', function (Blueprint $table) {
+        Schema::create('access_logs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('achivement_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('achivement_id')->references('id')->on('achivements');
+            $table->string('log', 200);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_achivements');
+        Schema::dropIfExists('access_logs');
     }
 };
